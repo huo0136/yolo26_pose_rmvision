@@ -1,21 +1,29 @@
 from __future__ import annotations
 
+# 命令行参数解析（类似 C++ 里的命令行参数处理）
 import argparse
+# 随机数（用于打乱验证集样本）
 import random
+# 计数器（统计每类样本数量）
 from collections import Counter
+# 路径操作（类似 C++ std::filesystem::path）
 from pathlib import Path
 
 import matplotlib
 
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
-import numpy as np
-import yaml
-from PIL import Image, ImageDraw
+matplotlib.use("Agg")  # 不弹窗，直接把图保存到文件（服务器无显示器时需要）
+import matplotlib.pyplot as plt  # 绘图库（类似 MATLAB / gnuplot）
+import numpy as np  # 数值计算数组（类似 C++ Eigen / std::valarray）
+import yaml  # 解析 YAML 配置文件
+from PIL import Image, ImageDraw  # 图片读取与绘图（Python 图像库 Pillow）
 
+# 当前脚本所在目录
 BASE_DIR = Path(__file__).resolve().parent
+# 默认数据集配置文件路径
 DEFAULT_DATA_YAML = BASE_DIR / "armor_pose.yaml"
+# 支持的图片后缀
 IMAGE_SUFFIXES = {".jpg", ".jpeg", ".png", ".bmp", ".webp"}
+# 字母箱缩放后的目标短边尺寸（像训练时的 imgsz）
 SIZES = (640, 960)
 
 
